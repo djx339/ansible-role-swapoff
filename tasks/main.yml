@@ -1,2 +1,10 @@
 ---
-# tasks file for swapoff
+- name: Disable swapoff
+  shell: swapoff -a
+
+- name: Disable swapoff after reboot
+  replace:
+    path: /tmp/fstab
+    regep: '^(\s*)([^#]+)(\s+)(\w+)(\s+)swap(\s+)(.*)'
+    replace: '#\1\2\3swap\4\5'
+    backup: yes

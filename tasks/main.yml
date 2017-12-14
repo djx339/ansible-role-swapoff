@@ -2,9 +2,9 @@
 - name: Disable swapoff
   shell: swapoff -a
 
-- name: Disable swapoff after reboot
+- name: Disable swapoff permanently
   replace:
-    path: /tmp/fstab
+    path: /etc/fstab
     regexp: '^(\s*)([^#\n]+\s+)(\w+\s+)swap(\s+.*)$'
     replace: '#\1\2\3swap\4'
     backup: yes
